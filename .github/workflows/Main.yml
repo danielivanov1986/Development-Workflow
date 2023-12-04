@@ -1,0 +1,22 @@
+
+
+name: Main Deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  
+  
+jobs:
+  deploy:
+    
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to production
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.MAIN_SERVICE_ID }}
+          api-key: ${{ secrets.WORKFLOW_API_KEY }}
